@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post">
+        <div class="form-group">
+
+            <select class="form-control" name="symbol" required>
+                <option disabled selected value="">Symbol</option>
+
+                {% for s in stocks %}
+                    <option value="{{ s.symbol }}" data-total-shares="{{ s.total_shares }}">{{ s.symbol }}</option>
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" name="shares" placeholder="Shares" type="number" min="1" required autofocus>
+        </div>
+
+        <button class="btn btn-danger" type="submit">Sell</button>
+    </form>
+
+{% endblock %}
